@@ -18,11 +18,17 @@ describe("TodosPage flows", () => {
     const user = userEvent.setup();
     renderTodos();
 
-    const titleInput = screen.getByLabelText(/title/i);
+    // Click "Add Task" to open the modal
+    const addButton = screen.getByRole("button", { name: /add task/i });
+    await user.click(addButton);
+    
+    // Find the form in the modal
+    const modal = screen.getByRole("dialog");
+    const titleInput = within(modal).getByLabelText(/title/i);
     await user.type(titleInput, "My first task");
-    await user.click(screen.getByRole("button", { name: /add task/i }));
+    await user.click(within(modal).getByRole("button", { name: /^add task$/i }));
 
-    expect(screen.getByText("My first task")).toBeInTheDocument();
+    expect(await screen.findByText("My first task")).toBeInTheDocument();
 
     await user.click(screen.getByRole("button", { name: /^edit$/i }));
     const editRegion = screen.getByRole("region", { name: /edit/i });

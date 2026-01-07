@@ -13,7 +13,7 @@ export const en = {
   },
 
   actions: {
-    addTask: "Add task",
+    addTask: "Add Task",
     save: "Save",
     cancel: "Cancel",
     delete: "Delete",
@@ -27,6 +27,15 @@ export const en = {
     deleteSelected: "Delete selected",
     openTaskModal: "Open task editor",
     select: "Select",
+  },
+
+  ui: {
+    filters: "Filters",
+    bulkActions: "Bulk Actions",
+    quickAdd: "Quick Add",
+    showQuickAdd: "Show quick add form",
+    hideQuickAdd: "Hide quick add form",
+    clickToShow: "click to show",
   },
 
   fields: {
@@ -62,7 +71,8 @@ export const en = {
 
   empty: {
     title: "Nothing here yet",
-    body: "Add your first task, then use filters, tags, and bulk actions to stay in flow.",
+    body: "Get started by clicking 'Add Task' to create your first task!",
+    hint: "💡 Tip: Use tags to organize tasks (work, personal, etc.) and filters to find them quickly.",
   },
 
   filters: {

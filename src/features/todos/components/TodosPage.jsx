@@ -15,6 +15,9 @@ export function TodosPage() {
   const { push } = useToasts();
   const { state, derived, actions } = useTodosController();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showQuickAdd, setShowQuickAdd] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
+  const [showBulkActions, setShowBulkActions] = useState(false);
   const onSearch = useCallback((q) => actions.setFilters({ search: q }), [actions]);
 
   const allTags = useMemo(() => {
@@ -30,23 +33,36 @@ export function TodosPage() {
       <div className="toolbar">
         <div className="toolbarRow">
           <SearchInput value={state.filters.search} onDebouncedChange={onSearch} />
-          <div className="row wrap">
+          <div className="row wrap" style={{ gap: "var(--sp-2)" }}>
             <button className="btn primary" type="button" onClick={() => setIsModalOpen(true)}>
-              {t("actions.openTaskModal")}
+              {t("actions.addTask")}
             </button>
+            {!showQuickAdd && (
+              <button
+                className="btn"
+                type="button"
+                onClick={() => setShowQuickAdd(true)}
+                title={t("ui.showQuickAdd")}
+              >
+                {t("ui.quickAdd")}
+              </button>
+            )}
           </div>
         </div>
 
-        <div className="panel" style={{ padding: "var(--sp-4)" }}>
-          <div className="row" style={{ justifyContent: "space-between" }}>
-            <div>
-              <div style={{ fontWeight: 750, fontSize: "var(--text-lg)" }}>{t("actions.addTask")}</div>
-              <div className="muted" style={{ fontSize: "var(--text-sm)" }}>
-                {t("validation.quickAddHint")}
-              </div>
+        {showQuickAdd && (
+          <div className="panel" style={{ padding: "var(--sp-4)" }}>
+            <div className="row" style={{ justifyContent: "space-between", marginBottom: "var(--sp-2)" }}>
+              <div style={{ fontWeight: 750, fontSize: "var(--text-lg)" }}>{t("ui.quickAdd")}</div>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => setShowQuickAdd(false)}
+                title={t("ui.hideQuickAdd")}
+              >
+                ✕
+              </button>
             </div>
-          </div>
-          <div style={{ marginTop: "var(--sp-3)" }}>
             <TaskForm
               mode="create"
               onSubmit={(fields) => {
@@ -59,27 +75,57 @@ export function TodosPage() {
               }}
             />
           </div>
+        )}
+
+        <StatsBar counts={derived.counts} selectedCount={selectedCount} />
+
+        <div className="panel" style={{ padding: "var(--sp-2)" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--sp-2)" }}>
+            <button
+              className="btn"
+              type="button"
+              onClick={() => setShowFilters(!showFilters)}
+              aria-expanded={showFilters}
+              style={{ width: "100%", justifyContent: "flex-start" }}
+            >
+              {showFilters ? "▼" : "▶"} {t("ui.filters")} {showFilters ? "" : `(${t("ui.clickToShow")})`}
+            </button>
+            <button
+              className="btn"
+              type="button"
+              onClick={() => setShowBulkActions(!showBulkActions)}
+              aria-expanded={showBulkActions}
+              style={{ width: "100%", justifyContent: "flex-start" }}
+            >
+              {showBulkActions ? "▼" : "▶"} {t("ui.bulkActions")}{" "}
+              {selectedCount > 0 && `(${selectedCount} ${t("stats.selected")})`}
+            </button>
+          </div>
         </div>
 
-        <FiltersBar filters={state.filters} allTags={allTags} onSetFilters={actions.setFilters} />
-        <StatsBar counts={derived.counts} selectedCount={selectedCount} />
-        <BulkActions
-          selectedCount={selectedCount}
-          onCompleteAll={() => {
-            actions.bulkComplete();
-            push({ title: t("toasts.completed"), variant: "success" });
-          }}
-          onClearCompleted={() => {
-            actions.clearCompleted();
-            push({ title: t("actions.clearCompleted"), variant: "info" });
-          }}
-          onSelectAllVisible={actions.selectAllVisible}
-          onClearSelection={actions.clearSelected}
-          onDeleteSelected={() => {
-            actions.deleteSelected();
-            push({ title: t("toasts.deleted"), variant: "danger" });
-          }}
-        />
+        {showFilters && (
+          <FiltersBar filters={state.filters} allTags={allTags} onSetFilters={actions.setFilters} />
+        )}
+
+        {showBulkActions && (
+          <BulkActions
+            selectedCount={selectedCount}
+            onCompleteAll={() => {
+              actions.bulkComplete();
+              push({ title: t("toasts.completed"), variant: "success" });
+            }}
+            onClearCompleted={() => {
+              actions.clearCompleted();
+              push({ title: t("actions.clearCompleted"), variant: "info" });
+            }}
+            onSelectAllVisible={actions.selectAllVisible}
+            onClearSelection={actions.clearSelected}
+            onDeleteSelected={() => {
+              actions.deleteSelected();
+              push({ title: t("toasts.deleted"), variant: "danger" });
+            }}
+          />
+        )}
       </div>
 
       <TaskList

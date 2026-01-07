@@ -71,15 +71,20 @@ export function TaskList({ tasks, selectedIds, onToggleSelected, actions }) {
 
   if (tasks.length === 0) {
     return (
-      <div className="panel" style={{ padding: "var(--sp-6)" }}>
+      <div className="panel" style={{ padding: "var(--sp-6)", textAlign: "center" }}>
         <img
           src={emptyArt}
           alt=""
-          style={{ width: "100%", borderRadius: "var(--r-xl)", marginBottom: "var(--sp-4)" }}
+          style={{ width: "100%", maxWidth: "400px", borderRadius: "var(--r-xl)", marginBottom: "var(--sp-4)" }}
         />
-        <div style={{ fontSize: "var(--text-lg)", fontWeight: 720 }}>{t("empty.title")}</div>
-        <div className="muted" style={{ marginTop: "var(--sp-2)" }}>
+        <div style={{ fontSize: "var(--text-xl)", fontWeight: 720, marginBottom: "var(--sp-2)" }}>
+          {t("empty.title")}
+        </div>
+        <div className="muted" style={{ marginTop: "var(--sp-2)", fontSize: "var(--text-base)" }}>
           {t("empty.body")}
+        </div>
+        <div className="muted" style={{ marginTop: "var(--sp-3)", fontSize: "var(--text-sm)" }}>
+          {t("empty.hint")}
         </div>
       </div>
     );
