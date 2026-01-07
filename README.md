@@ -5,7 +5,8 @@ A beautiful, easy-to-use to-do list app that helps you stay organized. All your 
 ---
 
 ## ✨ Quick Start
-just visit here : https://ehsankhani.github.io/TO-DO-list/
+**just visit here : https://ehsankhani.github.io/TO-DO-list/**
+-or
 **Get started in 3 steps:**
 
 ```bash
