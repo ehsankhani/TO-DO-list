@@ -1,0 +1,107 @@
+:root {
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+
+  --lh-tight: 1.15;
+  --lh-normal: 1.5;
+
+  /* Spacing scale (4px base) */
+  --sp-0: 0;
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+
+  /* Radii */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+
+  /* Shadows (subtle depth layers) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.18);
+
+  /* Motion */
+  --dur-1: 120ms;
+  --dur-2: 180ms;
+  --dur-3: 280ms;
+  --ease-standard: cubic-bezier(0.2, 0.9, 0.2, 1);
+  --ease-out: cubic-bezier(0.12, 0.8, 0.25, 1);
+
+  /* Layout */
+  --container: 1080px;
+  --border: 1px solid var(--border-color);
+}
+
+/* Theme: Light */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #0b1220;
+  --surface: rgba(255, 255, 255, 0.86);
+  --surface-2: rgba(255, 255, 255, 0.72);
+  --panel: rgba(255, 255, 255, 0.92);
+  --text: #0b1220;
+  --muted: rgba(11, 18, 32, 0.62);
+  --border-color: rgba(11, 18, 32, 0.12);
+  --ring: rgba(88, 101, 242, 0.55);
+
+  --accent: #5865f2;
+  --accent-2: #22c55e;
+  --danger: #ef4444;
+  --warn: #f59e0b;
+
+  --bg-app: radial-gradient(1200px 700px at 10% 10%, rgba(88, 101, 242, 0.22), transparent 60%),
+    radial-gradient(900px 600px at 80% 0%, rgba(34, 197, 94, 0.18), transparent 55%),
+    radial-gradient(900px 600px at 0% 100%, rgba(245, 158, 11, 0.14), transparent 55%),
+    linear-gradient(180deg, #f6f7fb, #eef2ff);
+}
+
+/* Theme: Dark */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #eef2ff;
+  --surface: rgba(15, 23, 42, 0.62);
+  --surface-2: rgba(15, 23, 42, 0.48);
+  --panel: rgba(2, 6, 23, 0.76);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.62);
+  --border-color: rgba(255, 255, 255, 0.10);
+  --ring: rgba(125, 211, 252, 0.55);
+
+  --accent: #7dd3fc;
+  --accent-2: #34d399;
+  --danger: #fb7185;
+  --warn: #fbbf24;
+
+  --bg-app: radial-gradient(1200px 700px at 10% 10%, rgba(125, 211, 252, 0.18), transparent 60%),
+    radial-gradient(900px 600px at 80% 0%, rgba(52, 211, 153, 0.14), transparent 55%),
+    radial-gradient(900px 600px at 0% 100%, rgba(251, 191, 36, 0.10), transparent 55%),
+    linear-gradient(180deg, #0b1020, #050814);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0ms;
+    --dur-2: 0ms;
+    --dur-3: 0ms;
+  }
+}
+

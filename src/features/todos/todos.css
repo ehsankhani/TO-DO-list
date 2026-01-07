@@ -1,0 +1,180 @@
+.todosGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+}
+
+.toolbarRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: var(--sp-3);
+}
+
+.filters .field {
+  width: 100%;
+}
+
+.statsBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-3);
+}
+
+.statsPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.taskListWrap {
+  border: var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+}
+
+.taskList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.taskItem {
+  display: grid;
+  grid-template-columns: 34px 1fr auto;
+  gap: var(--sp-3);
+  align-items: center;
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--border-color);
+  transition: background var(--dur-2) var(--ease-standard),
+    transform var(--dur-1) var(--ease-standard),
+    opacity var(--dur-2) var(--ease-standard);
+}
+
+.taskItem:hover {
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+}
+
+.taskItem:last-child {
+  border-bottom: none;
+}
+
+.taskTitle {
+  font-weight: 720;
+  line-height: var(--lh-tight);
+}
+
+.taskMeta {
+  margin-top: var(--sp-1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.taskDesc {
+  margin-top: var(--sp-1);
+  color: var(--muted);
+  font-size: var(--text-sm);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.taskActions {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.taskItemInner {
+  display: contents;
+}
+
+.pill {
+  padding: 0.3rem 0.5rem;
+  border-radius: 999px;
+  border: var(--border);
+  background: var(--surface-2);
+  font-size: var(--text-sm);
+}
+
+.pillAccent {
+  border-color: color-mix(in srgb, var(--accent) 25%, var(--border-color));
+}
+
+.pillOk {
+  border-color: color-mix(in srgb, var(--accent-2) 25%, var(--border-color));
+}
+
+.pillWarn {
+  border-color: color-mix(in srgb, var(--warn) 25%, var(--border-color));
+}
+
+.pillDanger {
+  border-color: color-mix(in srgb, var(--danger) 25%, var(--border-color));
+}
+
+.taskFormGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+}
+
+.taskFormRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3);
+}
+
+.fieldLabel {
+  font-size: var(--text-sm);
+  font-weight: 650;
+  margin-bottom: var(--sp-1);
+}
+
+.fieldHelp {
+  margin-top: var(--sp-1);
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+.errorText {
+  margin-top: var(--sp-1);
+  font-size: var(--text-xs);
+  color: var(--danger);
+}
+
+.inlineEdit {
+  padding: var(--sp-4);
+  background: color-mix(in srgb, var(--surface) 40%, transparent);
+}
+
+@media (max-width: 860px) {
+  .filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .taskFormRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+
